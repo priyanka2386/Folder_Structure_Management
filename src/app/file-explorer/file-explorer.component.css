@@ -1,0 +1,106 @@
+/* for root btn css */
+.rootbtn {
+  background: #000000;
+  color: #ffffff;
+  margin: 10px;
+}
+/* for removing li bullets */
+.no-bullet {
+  list-style-type: none;
+}
+/* used for tree structure border */
+.sublist {
+  display: inline-block;
+  vertical-align: middle;
+}
+.sublist.tree:before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: -8px;
+  background: #000;
+  height: 21px;
+  width: 2px;
+}
+.sublist.tree:after {
+  position: absolute;
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: #000;
+  left: -28px;
+  /* top: 0; */
+  bottom: 11px;
+}
+li.sublist.tree {
+  position: relative;
+}
+/* used for display border on hover */
+.border {
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid transparent;
+  padding: 5px;
+}
+.hover-div:hover.border {
+  border-color: #000;
+}
+/* used for display add/delete button on hover */
+.delete {
+  display: none;
+}
+.hover-div:hover .delete {
+  display: inline-block;
+}
+/* used to give background color to file and folder btn */
+.background {
+  background: #c3bfbf;
+  padding: 5px;
+}
+/* used for to make rounded button with background of add/delete */
+.btncss {
+  background: #000000;
+  color: #ffffff;
+  border-radius: 25px;
+}
+/* used for to set toolbar background color and text color */
+.mat-toolbar {
+  background: #000;
+  color: #fff;
+}
+/* used for to make toolbar title to center align */
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+/* used for border of file and folder create component */
+.sub_component {
+  display: inline-block;
+  vertical-align: middle;
+}
+.sub_component.foldertree:before {
+  content: "";
+  position: absolute;
+  background: #000;
+  height: 35px;
+  width: 2px;
+}
+.sub_component.foldertree:after {
+  position: absolute;
+  content: "";
+  width: 25px;
+  margin-top: -20px;
+  top: -10;
+  height: 2px;
+  background: #000;
+}
+
+/* below css used for set textarea to footer */
+#con {
+  min-height: 100%;
+  position: relative;
+}
+#jsonTextArea {
+  position: fixed;
+  bottom: 10px;
+}

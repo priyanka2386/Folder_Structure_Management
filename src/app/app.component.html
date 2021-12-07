@@ -1,0 +1,6 @@
+<div class="appmaindiv">
+  <file-explorer [fileElements]="fileElements | async" (folderAdded)="addFolder($event)"
+    (elementRemoved)="removeElement($event)" (elementEditSubFile)="elementEditSubFile($event)"
+    (elementEditSubFileFolder)="elementEditSubFileFolder($event)">
+  </file-explorer>
+</div>

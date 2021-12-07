@@ -1,0 +1,60 @@
+<mat-toolbar class="mat-toolbar">
+  <span class="title-center">FOLDER STRUCTURE MANAGEMENT</span>
+</mat-toolbar>
+
+<!-- below section is used for add root folder button section -->
+<section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+  <button mat-button class="rootbtn" (click)="openFolderFileComponent('folder')">Add folder to root</button>
+</section>
+
+<!-- below section is used for display folder and file in recursive -->
+<ng-template #recursiveList let-fileElements>
+  <ul *ngFor="let element of fileElements; let i = index">
+    <div class="border hover-div">
+      <li class="sublist sub_component" [ngClass]="{'tree': element.parent != 'root'}">
+        <img src="assets/svg/folder-open-regular.svg" style="width: 20px;height: 20px;" *ngIf="element.isFolder">
+        <img src="assets/svg/file-regular.svg" style="width: 20px;height: 20px;" *ngIf="!element.isFolder">
+      </li>
+      <li class="sublist">{{ element.name }}</li>
+      <li class="sublist delete">
+        <mat-icon class="btncss" (click)="displayBTN(element)" *ngIf="element.isFolder">add circle icon
+        </mat-icon>
+      </li>
+      <li class="sublist delete">
+        <mat-icon (click)="deleteElement(element)" class="btncss">delete circle icon</mat-icon>
+      </li>
+    </div>
+
+    <!-- below ul is used for file/folder button -->
+    <ul *ngIf="element.isSubFile==true">
+      <li class="sublist tree background" (click)="createSubFolder('file',element)">File</li>
+      <li class="sublist background" (click)="createSubFolder('folder',element)">Folder</li>
+    </ul>
+
+    <!-- below ul is used for open sub file/folder form -->
+    <ul *ngIf="element.isSubFolder==true">
+      <li class="sub_component foldertree">
+        <app-newFolderFile (myFoldername)="getFolderName($event,element)" (closeevent)="getCloseEvent($event,element)"
+          [element]="element" [type]="type">
+        </app-newFolderFile>
+      </li>
+    </ul>
+
+    <!-- below section is used for display folder and file in recursive child element -->
+    <ul *ngIf="element.children != undefined && element.children.length > 0">
+      <ng-container class="border" *ngTemplateOutlet="recursiveList; context:{ $implicit: element.children }">
+      </ng-container>
+    </ul>
+
+  </ul>
+</ng-template>
+<ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: fileElements }"></ng-container>
+
+<!-- below component is used for open file/folder form -->
+<app-newFolderFile *ngIf="isNewDig" (myFoldername)="getFolderName($event)" (closeevent)="getCloseEvent($event)">
+</app-newFolderFile>
+
+<!-- below code is used to display textarea in footer -->
+<div *ngIf="fileElements.length > 0" id="con">
+  <textarea id="jsonTextArea" cols=70 rows=20 [readonly]="true"></textarea>
+</div>

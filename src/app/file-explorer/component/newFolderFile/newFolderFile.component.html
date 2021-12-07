@@ -1,0 +1,18 @@
+<!-- this div is used for add folder/file form -->
+<div class="maindiv">
+  <ul>
+    <li class="rowlist">
+      <img src="assets/svg/folder-open-regular.svg" style="width: 20px;height: 20px;" *ngIf="type == 'folder'">
+      <img src="assets/svg/file-regular.svg" style="width: 20px;height: 20px;" *ngIf="type == 'file'">
+    </li>
+    <li class="rowlist">
+      <input class="inputcss" [(ngModel)]="folderName">
+    </li>
+    <li class="rowlist">
+      <mat-icon class="done" (click)="createFolder(type,element)">done</mat-icon>
+    </li>
+    <li class="rowlist">
+      <mat-icon class="close" (click)="close()">close</mat-icon>
+    </li>
+  </ul>
+</div>
